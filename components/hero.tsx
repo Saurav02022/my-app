@@ -3,7 +3,7 @@ import SupabaseLogo from "./supabase-logo";
 
 export default function Header() {
   return (
-    <div className="w-full h-full flex flex-col gap-16 justify-center items-center">
+    <div className="w-full h-full flex flex-col gap-10 justify-center items-center">
       <div className="flex gap-8 justify-center items-center">
         <a
           href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"

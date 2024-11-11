@@ -23,9 +23,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="w-full h-full flex flex-col relative">
+          <main className="w-full h-full flex flex-col">
             <Navbar />
-            <section className="w-full h-full min-h-screen">{children}</section>
+            <section className="w-full h-full min-h-screen flex justify-center items-center">
+              {children}
+            </section>
             <Footer />
           </main>
         </ThemeProvider>

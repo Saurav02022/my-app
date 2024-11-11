@@ -56,6 +56,9 @@ export default async function AuthButton() {
           Sign out
         </Button>
       </form>
+      <Button asChild size="sm" variant={"default"}>
+        <Link href="/todo">Todo app</Link>
+      </Button>
     </div>
   ) : (
     <div className="flex items-center gap-3">
