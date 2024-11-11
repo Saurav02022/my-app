@@ -1,12 +1,26 @@
+"use client";
+
 import { signInAction } from "@/app/actions";
 import { FormMessage, Message } from "@/components/form-message";
 import { SubmitButton } from "@/components/submit-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
+import { createClient } from "@/utils/supabase/client";
+import { Button } from "@/components/ui/button";
 
 export default async function Login(props: { searchParams: Promise<Message> }) {
   const searchParams = await props.searchParams;
+  const supabase = await createClient();
+
+  const signInWithGoogle = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
+  };
   return (
     <form className="flex-1 flex flex-col min-w-64">
       <h1 className="text-2xl font-medium">Sign in</h1>
@@ -17,6 +31,19 @@ export default async function Login(props: { searchParams: Promise<Message> }) {
         </Link>
       </p>
       <div className="flex flex-col gap-2 [&>input]:mb-3 mt-8">
+        <Button className="w-full" onClick={signInWithGoogle}>
+          Sign in with Google
+        </Button>
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <span className="w-full border-t border-slate-500" />
+          </div>
+          <div className="relative my-6 flex justify-center text-base font-medium">
+            <span className="bg-white px-2 font-sans tracking-wide text-black">
+              OR
+            </span>
+          </div>
+        </div>
         <Label htmlFor="email">Email</Label>
         <Input name="email" placeholder="you@example.com" required />
         <div className="flex justify-between items-center">
